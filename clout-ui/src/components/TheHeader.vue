@@ -1,15 +1,20 @@
 <template>
-    <v-toolbar>
-        <v-toolbar-title class="headline text-uppercase header-title">
-            <span>{{ nameLeft }}</span>
-            <span class="font-weight-light"> {{ nameRight }} </span>
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <BaseButton
-            :value="buttonName"
-            :onClick="routeHeaderButton"
-        ></BaseButton>
-    </v-toolbar>
+    <div class="header-container">
+        <v-app-bar dark>
+            <div class="d-flex align-center">
+                <span>{{ nameLeft }}</span>
+                <span class="name-right"> {{ nameRight }} </span>
+            </div>
+
+            <v-spacer></v-spacer>
+
+            <BaseButton
+                :value="buttonName"
+                :onClick="routeHeaderButton"
+                class="button-container"
+            ></BaseButton>
+        </v-app-bar>
+    </div>
 </template>
 
 <script>
@@ -58,8 +63,17 @@ export default {
 }
 </script>
 
-<style scope>
-.header-title {
-    width: 150px;
+<style scope lang="scss">
+.header-container {
+    font-size: 25px;
+}
+.name-right {
+    margin-left: 5px;
+    font-weight: bold;
+}
+.button-container {
+    .v-btn__content {
+        font-size: 20px;
+    }
 }
 </style>
