@@ -1,5 +1,5 @@
 <template>
-    <v-btn @click="onClick">{{ value }} </v-btn>
+    <v-btn @click="onClick" :color="backgroundColor">{{ value }} </v-btn>
 </template>
 
 <script>
@@ -13,9 +13,13 @@ export default {
         onClick: {
             type: Function,
             required: true
+        },
+        backgroundColor: {
+            type: String,
+            default: 'white'
         }
     }
 }
 </script>
 
-<style></style>
+<style scoped></style>
