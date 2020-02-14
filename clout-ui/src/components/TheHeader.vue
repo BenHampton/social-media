@@ -1,6 +1,6 @@
 <template>
     <div class="header-container">
-        <v-app-bar dark>
+        <v-app-bar>
             <div class="d-flex align-center">
                 <span>{{ nameLeft }}</span>
                 <span class="name-right"> {{ nameRight }} </span>
@@ -66,6 +66,7 @@ export default {
 <style scope lang="scss">
 .header-container {
     font-size: 25px;
+    background: #990909;
 }
 .name-right {
     margin-left: 5px;

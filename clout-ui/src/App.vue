@@ -1,10 +1,10 @@
 <template>
-    <v-app>
+    <div>
         <TheHeader nameLeft="The" nameRight="Clout"></TheHeader>
-        <v-content>
+        <div class="app-container">
             <router-view></router-view>
-        </v-content>
-    </v-app>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -17,3 +17,17 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+.app-container {
+    width: 100%;
+    font-size: 20px;
+}
+</style>
+
+<style>
+html,
+body {
+    height: 100%;
+}
+</style>
