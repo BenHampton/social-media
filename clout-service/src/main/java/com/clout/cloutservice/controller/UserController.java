@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:8081")
-@RequestMapping("/sign-up")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -21,5 +21,10 @@ public class UserController {
     @PostMapping
     public ResponseEntity<UserEntity> createUser(@RequestBody SignUp signUp) {
         return new ResponseEntity<>(userService.createUser(signUp), HttpStatus.OK);
+    }
+
+    @PutMapping("/status")
+    public ResponseEntity<UserEntity> updateStatus(@RequestBody UserEntity user) {
+        return new ResponseEntity<>(userService.updateStatus(user),HttpStatus.OK);
     }
 }

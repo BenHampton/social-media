@@ -36,22 +36,7 @@ export default {
     name: 'UserProfile',
     components: { BaseInputStatus, BaseToast },
     computed: {
-        ...mapState(['x'])
-    },
-    data() {
-        return {
-            showToast: false,
-            user: {
-                createdAt: '2019-12-08T01:20:00.918+0000',
-                updatedAt: '2019-12-08T01:20:00.918+0000',
-                id: 1,
-                username: 'testy',
-                logo: 'N/A',
-                email: 'test@test.com',
-                password: 'test',
-                status: 'TEST STATUS'
-            }
-        }
+        ...mapState(['user'])
     },
     methods: {
         routeToFriendsList() {

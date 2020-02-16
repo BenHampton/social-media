@@ -40,6 +40,17 @@ public class UserService {
         return findUserByUsername(login.getUsername());
     }
 
+    public UserEntity updateStatus(UserEntity user) {
+
+        UserEntity updatedUser = userEntityRepository.save(user);
+        return findUserById(updatedUser.getId());
+    }
+
+    private UserEntity findUserById(Long id) {
+        Optional<UserEntity> user = userEntityRepository.findUserEntitiesById(id);
+        return user.orElseThrow((() -> new RuntimeException("No username found")));
+    }
+
     private UserEntity findUserByUsername(String username) {
         Optional<UserEntity> user = userEntityRepository.findUserEntitiesByUsername(username);
         return user.orElseThrow((() -> new RuntimeException("No username found")));
@@ -49,5 +60,6 @@ public class UserService {
         Optional<UserEntity> user = userEntityRepository.findUserEntitiesByEmail(email);
         return user.orElseThrow((() -> new RuntimeException("No username found")));
     }
+
 
 }
