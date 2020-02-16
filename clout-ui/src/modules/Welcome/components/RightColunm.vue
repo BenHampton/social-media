@@ -32,12 +32,10 @@ export default {
     components: { BaseButton },
     methods: {
         handleLogin() {
-            console.log('login')
             this.$router.push({ name: 'Login' })
         },
         handleSignUp() {
-            console.log('signup')
-            this.$router.push({ name: 'CreateUser' })
+            this.$router.push({ name: 'TheCreateUser' })
         }
     }
 }

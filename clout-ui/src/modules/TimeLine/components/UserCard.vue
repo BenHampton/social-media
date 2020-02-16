@@ -1,4 +1,4 @@
-<template><div>USER_CARD</div> </template>
+<template><div>USER_CARD</div></template>
 
 <script>
 export default {

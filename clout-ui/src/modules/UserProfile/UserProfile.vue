@@ -1,91 +1,130 @@
 <template>
-    <v-container fluid ma-0 pa-0>
-        <v-layout row>
-            <v-flex xs3>
-                <div class="profile-image">
-                    <img src="https://via.placeholder.com/250x250.png" />
-                    {{ this.userInformation.user.logo }}
+    <div class="user-profile-container">
+        <div class="row-one-container">
+            <div class="status">
+                <BaseInputStatus :image="user.logo" :showLogo="false" />
+            </div>
+            <div class="info">
+                <div class="image-container">{{ user.logo }}</div>
+                <div class="user-info">
+                    <div>{{ user.username }}</div>
+                    <div>{{ user.email }}</div>
+                    <div class="friends">
+                        Friends:
+                        <span class="friends-count" @click="routeToFriendsList"
+                            ><BaseToast>#####</BaseToast></span
+                        >
+                    </div>
                 </div>
-            </v-flex>
-            <v-flex xs3 class="profile-info">
-                <div class="profile-username">
-                    {{ this.userInformation.user.username }}
+                <div class="user-status">
+                    <span class="status-prefix">Clouting:</span>
+                    {{ user.status }}
                 </div>
-                <div class="profile-email">
-                    {{ this.userInformation.user.email }}
-                </div>
-                <div class="profile-friends">
-                    View Friends (<span
-                        @click="this.routeToFriendsList"
-                        class="friends"
-                        >X</span
-                    >)
-                </div>
-            </v-flex>
-            <v-flex xs6 pa-5>
-                <PostMaterial :userId="this.userInformation.user.id">
-                </PostMaterial>
-            </v-flex>
-        </v-layout>
-        <v-layout row class="status">
-            <InputStatus :user="this.userInformation.user" :showLogo="false">
-            </InputStatus>
-        </v-layout>
-        <v-layout row class="post-container">
-            <ExistingPost :userId="this.userInformation.user.id">
-            </ExistingPost>
-        </v-layout>
-    </v-container>
+            </div>
+        </div>
+        <div class="row-two-container">
+            personal feed
+        </div>
+    </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-import PostMaterial from './components/PostMaterial'
-import ExistingPost from './components/ExistingPost'
-import InputStatus from '../../components/InputStatus'
-
+import BaseInputStatus from '../../components/BaseInputStatus'
+import BaseToast from '../../components/BaseToast'
 export default {
     name: 'UserProfile',
-    components: {
-        PostMaterial,
-        ExistingPost,
-        InputStatus
+    components: { BaseInputStatus, BaseToast },
+    computed: {
+        ...mapState(['x'])
+    },
+    data() {
+        return {
+            showToast: false,
+            user: {
+                createdAt: '2019-12-08T01:20:00.918+0000',
+                updatedAt: '2019-12-08T01:20:00.918+0000',
+                id: 1,
+                username: 'testy',
+                logo: 'N/A',
+                email: 'test@test.com',
+                password: 'test',
+                status: 'TEST STATUS'
+            }
+        }
     },
     methods: {
         routeToFriendsList() {
-            this.$router.push({ name: 'Friends' })
+            console.log('Friends List Page - Comming Soon')
         }
-    },
-    computed: {
-        ...mapState(['userInformation'])
     }
 }
 </script>
 
-<style scoped>
-.status {
-    margin-left: 25%;
+<style scoped lang="scss">
+.user-profile-container {
+    margin-top: 20px;
 }
-.friends {
-    cursor: pointer;
-    color: blue;
+.row-one-container {
+    position: relative;
+    width: 100%;
+
+    .status {
+        .status-container {
+            padding: 0;
+            padding-left: 25%;
+            padding-right: 25%;
+        }
+    }
+
+    .info {
+        position: relative;
+        display: flex;
+        padding-left: 10%;
+        padding-right: 10%;
+
+        .image-container {
+            background: pink;
+            height: 10vh;
+            width: 10%;
+            margin-right: 1%;
+        }
+    }
+    .user-info {
+        padding: 1%;
+    }
+
+    .friends {
+        font-size: 15px;
+        margin-top: 18px;
+        width: 100%;
+        padding: 0;
+
+        .friends-count {
+            cursor: pointer;
+
+            &:hover {
+                color: #1a0dab;
+            }
+        }
+    }
+
+    .user-status {
+        margin-left: 10%;
+        margin-top: 30px;
+        width: 100%;
+
+        .status-prefix {
+            font-size: 15px;
+            padding-right: 2%;
+        }
+    }
 }
-.profile-image {
-    cursor: pointer;
-}
-.profile-info {
-    font-size: 18px;
-    margin-top: 4%;
-    padding-bottom: 5%;
-    padding-left: 2%;
-}
-.profile-email {
-    margin-top: 5%;
-}
-.profile-friends {
-    margin-top: 5%;
-}
-.post-container {
-    margin-top: 2%;
+
+.row-two-container {
+    background: tan;
+    position: relative;
+    margin-top: 1%;
+    width: 100%;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
-    <v-container fluid fill-height class="sign-up-container">
-        <v-layout align-center justify-center>
-            <v-flex>
-                <v-card class="card">
-                    <v-form ref="createUser" v-model="valid" lazy-validation>
+    <div class="create-container">
+        <div class="create-user-form">
+            <v-form ref="createUser" v-model="valid" lazy-validation>
+                <div class="rows-container">
+                    <div>
                         <v-text-field
                             v-model="email"
                             placeholder="Email"
@@ -11,6 +11,8 @@
                             required
                         >
                         </v-text-field>
+                    </div>
+                    <div>
                         <v-text-field
                             v-model="username"
                             placeholder="Username"
@@ -18,6 +20,8 @@
                             required
                         >
                         </v-text-field>
+                    </div>
+                    <div>
                         <v-text-field
                             v-model="password"
                             placeholder="Password"
@@ -25,6 +29,8 @@
                             required
                         >
                         </v-text-field>
+                    </div>
+                    <div>
                         <v-text-field
                             v-model="confirmPassword"
                             placeholder="password Comfirmation"
@@ -32,23 +38,25 @@
                             required
                         >
                         </v-text-field>
+                    </div>
+                    <div>
                         <BaseButton
                             value="Login"
                             :onClick="createUser"
                         ></BaseButton>
-                    </v-form>
-                </v-card>
-            </v-flex>
-        </v-layout>
-    </v-container>
+                    </div>
+                </div>
+            </v-form>
+        </div>
+    </div>
 </template>
 
 <script>
 import axios from 'axios'
 import { mapMutations } from 'vuex'
-import BaseButton from '../../components/BaseButton'
+import BaseButton from './BaseButton'
 export default {
-    name: 'CreateUser',
+    name: 'TheCreateUser',
     components: {
         BaseButton
     },
@@ -106,10 +114,19 @@ export default {
 </script>
 
 <style>
-.sign-up-container {
-    width: 50%;
+.create-container {
+    width: 100%;
+    height: 93vh;
+    background: #2e2d2d;
 }
-.card {
-    padding: 20px;
+.create-user-form {
+    position: relative;
+    padding-top: 5%;
+    padding-right: 20%;
+    padding-left: 20%;
+}
+.rows-container {
+    background: white;
+    padding: 5%;
 }
 </style>
