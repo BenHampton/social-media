@@ -3,11 +3,10 @@ package com.clout.cloutservice.service;
 import com.clout.cloutservice.model.Login;
 import com.clout.cloutservice.model.entities.UserEntity;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class LoginService {
-
 
     private UserService userService;
 

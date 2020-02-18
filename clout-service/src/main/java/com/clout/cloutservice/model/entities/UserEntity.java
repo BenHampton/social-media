@@ -21,7 +21,7 @@ public class UserEntity extends AuditFields {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "NAME")
+    @Column(name = "USERNAME")
     private String username;
 
     @Column(name = "LOGO")

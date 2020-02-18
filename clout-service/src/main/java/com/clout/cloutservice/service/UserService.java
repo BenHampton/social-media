@@ -9,6 +9,8 @@ import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,6 +46,11 @@ public class UserService {
 
         UserEntity updatedUser = userEntityRepository.save(user);
         return findUserById(updatedUser.getId());
+    }
+
+    public List<UserEntity> findUsernameBySearchTerm(String searchTerm) {
+        Optional<List<UserEntity>> userList = userEntityRepository.searchUsernames(searchTerm);
+        return userList.orElseThrow(() -> new RuntimeException("No Users Found"));
     }
 
     private UserEntity findUserById(Long id) {
