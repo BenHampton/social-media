@@ -18,9 +18,16 @@ public class LoginController {
         this.loginService = loginService;
     }
 
-    @PostMapping
-    public ResponseEntity<UserEntity> login(@RequestBody Login login) {
-        return new ResponseEntity<>(loginService.attemptLogin(login), HttpStatus.OK);
+//    @PostMapping
+//    public ResponseEntity<UserEntity> login(@RequestBody Login login) {
+//        return new ResponseEntity<>(loginService.attemptLogin(login), HttpStatus.OK);
+//    }
+
+    @GetMapping
+    public ResponseEntity<UserEntity> login(@RequestParam("username") String username,
+                                            @RequestParam("email") String email,
+                                            @RequestParam("password") String password) {
+        return new ResponseEntity<>(loginService.attemptLogin(username, email, password), HttpStatus.OK);
     }
 
 }

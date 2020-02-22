@@ -18,7 +18,7 @@ public class CommentController {
         this.commentService = commentService;
     }
 
-    @GetMapping("post/{postId}/comments")
+    @GetMapping("/post/{postId}/comments")
     public ResponseEntity<List<CommentEntity>> getComments(@PathVariable( name = "postId" ) Long postId) {
         return new ResponseEntity<>(commentService.getComments(postId), HttpStatus.OK);
     }

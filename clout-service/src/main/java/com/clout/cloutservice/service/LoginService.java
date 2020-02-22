@@ -14,11 +14,11 @@ public class LoginService {
         this.userService = userService;
     }
 
-    public UserEntity attemptLogin(Login login) {
+    public UserEntity attemptLogin(String username, String email, String password) {
 
-        UserEntity user = userService.retrieveUser(login);
+        UserEntity user = userService.retrieveUser(username, email);
 
-        if (StringUtils.equals(login.getPassword(), user.getPassword())) {
+        if (StringUtils.equals(password, user.getPassword())) {
             return user;
         }
         return null;

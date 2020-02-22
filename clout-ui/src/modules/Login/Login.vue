@@ -89,12 +89,11 @@ export default {
         ...mapActions(['login']),
         async handleLogin() {
             if (this.$refs.loginForm.validate()) {
-                let login = {
+                await this.login({
                     username: this.username,
-                    password: this.password,
-                    emial: this.email
-                }
-                await this.login(login)
+                    email: this.email,
+                    password: this.password
+                })
                 this.$router.push({ name: 'TimeLine' })
             }
         },

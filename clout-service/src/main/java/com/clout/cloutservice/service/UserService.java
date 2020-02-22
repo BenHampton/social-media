@@ -34,12 +34,12 @@ public class UserService {
         throw new RuntimeException("Passwords do not match");
     }
 
-    public UserEntity retrieveUser(Login login) {
+    public UserEntity retrieveUser(String username, String email) {
 
-        if (StringUtils.isNotBlank(login.getEmail())) {
-            return findUserByEmail(login.getEmail());
+        if (StringUtils.isNotBlank(email)) {
+            return findUserByEmail(email);
         }
-        return findUserByUsername(login.getUsername());
+        return findUserByUsername(username);
     }
 
     public UserEntity updateStatus(UserEntity user) {

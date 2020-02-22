@@ -1,19 +1,16 @@
 import api from '../api'
-const host = 'http://localhost:8080'
-const loginAPI = '/login'
-let headers = {
-    Accept: 'application/json',
-    'Content-type': 'application/json',
-    'Access-Control-Allow-Origin': '*'
-}
+import { login, host } from './URLS.js'
+// let headers = {
+//     Accept: 'application/json',
+//     'Content-type': 'application/json',
+//     'Access-Control-Allow-Origin': '*'
+// }
 
 export default {
-    async login(request) {
+    async login(username, email, password) {
         const config = {
-            method: 'post',
-            url: `${host}${loginAPI}`,
-            data: request,
-            headers: headers
+            method: 'get',
+            url: `${host}${login}?username=${username}&email=${email}&password=${password}`
         }
         return api(config).catch(error => {
             throw error
