@@ -14,7 +14,11 @@ export default new Router({
         { path: '/Login', name: 'Login', component: Login },
         { path: '/create', name: 'TheCreateUser', component: TheCreateUser },
         { path: '/timeline', name: 'TimeLine', component: TimeLine },
-        { path: '/user-profile', name: 'UserProfile', component: UserProfile },
+        {
+            path: '/user/:userID',
+            name: 'UserProfile',
+            component: UserProfile
+        },
         { path: '*', redirect: '/' }
     ]
 })

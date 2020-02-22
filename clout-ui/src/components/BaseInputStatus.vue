@@ -26,6 +26,10 @@ export default {
         BaseButton
     },
     props: {
+        userID: {
+            type: Number,
+            required: true
+        },
         showLogo: {
             type: Boolean,
             required: true
@@ -52,7 +56,10 @@ export default {
             }
         },
         routeToUserProfile() {
-            this.$router.push({ name: 'UserProfile' })
+            this.$router.push({
+                name: 'UserProfile',
+                params: { userID: this.userID }
+            })
         }
     }
 }

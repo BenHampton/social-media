@@ -2,7 +2,11 @@
     <div class="user-profile-container">
         <div class="row-one-container">
             <div class="status">
-                <BaseInputStatus :image="user.logo" :showLogo="false" />
+                <BaseInputStatus
+                    :userID="user.id"
+                    :image="user.logo"
+                    :showLogo="false"
+                />
             </div>
             <div class="info">
                 <div class="image-container">{{ user.logo }}</div>

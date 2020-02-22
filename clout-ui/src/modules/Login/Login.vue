@@ -111,9 +111,6 @@ export default {
         hidePasswordVisibility() {
             this.passwordVisibility = 'password'
         }
-    },
-    computed: {
-        ...mapState(['userInformation'])
     }
 }
 </script>

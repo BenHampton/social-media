@@ -5,7 +5,11 @@
                 <span class="nav-container">NAVIGATION - coming soon</span>
 
                 <div class="clout-container">
-                    <BaseInputStatus :image="user.logo" :showLogo="true" />
+                    <BaseInputStatus
+                        :userID="user.id"
+                        :image="user.logo"
+                        :showLogo="true"
+                    />
                     <CloutCard />
                 </div>
                 <div class="user-container">
