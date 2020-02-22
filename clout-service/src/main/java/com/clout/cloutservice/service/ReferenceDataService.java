@@ -1,6 +1,6 @@
 package com.clout.cloutservice.service;
 
-import com.clout.cloutservice.model.entities.StatusCode;
+import com.clout.cloutservice.model.entities.StatusCodeEntity;
 import com.clout.cloutservice.repository.StatusCodeRepository;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ public class ReferenceDataService {
         this.statusCodeRepository = statusCodeRepository;
     }
 
-    public List<StatusCode> retrieveStatusCodes() {
+    public List<StatusCodeEntity> retrieveStatusCodes() {
         return statusCodeRepository.findAll();
     }
 

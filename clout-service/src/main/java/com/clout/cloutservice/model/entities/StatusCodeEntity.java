@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table( name = "STATUS_CODE")
-public class StatusCode {
+public class StatusCodeEntity {
 
     @Id
     @Column(name = "CODE")

@@ -5,10 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Builder
 @Data
@@ -16,18 +13,18 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Entity
 @Table(name = "RELATIONSHIP")
-public class relationship {
+public class RelationshipEntity {
 
     @Id
     @Column(name = "USER_ONE_ID")
-    private Long user_one_id;
+    private Long userOneId;
 
     @Column(name = "USER_TWO_ID")
-    private Long user_two_id;
+    private Long userTwoId;
 
     @Column(name = "STATUS_ID")
-    private Long status_id;
+    private Long statusId;
 
     @Column(name = "ACTION_ID")
-    private Long action_id;
+    private Long actionId;
 }

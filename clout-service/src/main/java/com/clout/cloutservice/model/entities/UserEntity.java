@@ -1,16 +1,15 @@
 package com.clout.cloutservice.model.entities;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 
 @Builder
 @Data
+@EqualsAndHashCode(exclude = "relationships")
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity

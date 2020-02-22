@@ -1,6 +1,6 @@
 package com.clout.cloutservice.controller;
 
-import com.clout.cloutservice.model.entities.StatusCode;
+import com.clout.cloutservice.model.entities.StatusCodeEntity;
 import com.clout.cloutservice.service.ReferenceDataService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class ReferenceDataController {
     }
 
     @GetMapping("/status-codes")
-    public ResponseEntity<List<StatusCode>> retrieveStatusCodes() {
+    public ResponseEntity<List<StatusCodeEntity>> retrieveStatusCodes() {
         return new ResponseEntity<>(referenceDataService.retrieveStatusCodes(), HttpStatus.OK);
     }
 }
