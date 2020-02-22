@@ -1,7 +1,6 @@
 package com.clout.cloutservice.repository;
 
 import com.clout.cloutservice.model.entities.CommentEntity;
-import com.clout.cloutservice.model.entities.PostEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +12,6 @@ public interface CommentEntityRepository extends JpaRepository<CommentEntity, Lo
     List<CommentEntity> findByPostId(Long id);
 
 
-    //Optional<CommentEntity> findByIdAndPostId(Long id, PostEntity postId);
+    //Optional<CommentEntity> findByIdAndPostId(Long id, PostEntity postId); ////TODO for delete
 
 }

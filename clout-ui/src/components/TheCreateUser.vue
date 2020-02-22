@@ -96,7 +96,7 @@ export default {
             }
 
             await axios
-                .post('http://localhost:8080/sign-up', signUp, {
+                .post('http://localhost:8080/users', signUp, {
                     headers: {
                         Accept: 'application/json',
                         'Content-type': 'application/json',
@@ -105,8 +105,7 @@ export default {
                 })
                 .then(response => {
                     this.setUser(response.data)
-                    console.log(response.data)
-                    this.$router.push({ name: 'NewsFeed' })
+                    this.$router.push({ name: 'TimeLine' })
                 })
         }
     }
