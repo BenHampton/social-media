@@ -1,42 +1,11 @@
 <template>
-    <v-container>
-        <v-layout row>
-            <v-flex v-if="this.getPosts.length !== 0" xs12 fluid ma-0 pa-0>
-                <span class="posts-title">
-                    Clout Posts
-                </span>
-                <div
-                    v-for="post in this.getPosts"
-                    :key="post.id"
-                    class="post-card"
-                >
-                    <v-card>
-                        <v-card-title>
-                            createBy/friendPostedToUser - {{ post.createdAt }}
-                        </v-card-title>
-                        <v-card-text class="post-content">
-                            {{ post.content }}
-                        </v-card-text>
-                        <v-card-actions class="post-actions" fluid ma-0 pa-0>
-                            <span class="emoji">
-                                emojis
-                            </span>
-                            <span class="like">
-                                like
-                            </span>
-                            <span class="comment">
-                                comment
-                            </span>
-                        </v-card-actions>
-                    </v-card>
-                </div>
-            </v-flex>
-        </v-layout>
-    </v-container>
+    <div>
+        EXISTING_POST
+    </div>
 </template>
 
 <script>
-import { mapState, mapActions, mapGetters } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
     name: 'ExistingPost',
@@ -58,8 +27,7 @@ export default {
         }
     },
     computed: {
-        ...mapState('Post', ['posts']),
-        ...mapGetters('Post', ['getPosts'])
+        ...mapState('Post', ['posts'])
     }
 }
 </script>

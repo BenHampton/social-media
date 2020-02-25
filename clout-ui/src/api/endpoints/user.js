@@ -11,7 +11,17 @@ export default {
             throw error
         })
     },
+    async findFriend(ID) {
+        console.log('ID', ID)
 
+        const config = {
+            method: 'get',
+            url: `${host}${users}/${ID}`
+        }
+        return api(config).catch(error => {
+            throw error
+        })
+    },
     async createUser(signUp) {
         const config = {
             method: 'get',

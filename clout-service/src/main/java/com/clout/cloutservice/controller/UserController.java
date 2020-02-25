@@ -30,6 +30,11 @@ public class UserController {
         return new ResponseEntity<>(userService.updateStatus(user),HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserEntity> findUser(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(userService.findUser(id), HttpStatus.OK);
+    }
+
     @GetMapping("/user-responses")
     public ResponseEntity<List<UserEntity>> findUsers(@RequestParam("searchTerm") String searchTerm) {
         return new ResponseEntity<>(userService.findUsernameBySearchTerm(searchTerm), HttpStatus.OK);

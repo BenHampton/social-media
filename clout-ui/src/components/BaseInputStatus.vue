@@ -9,6 +9,7 @@
         <v-text-field
             placeholder="What's Happening?"
             v-model="status"
+            clearable
         ></v-text-field>
         <BaseButton
             value="Update Status"
@@ -52,9 +53,6 @@ export default {
     methods: {
         ...mapMutations(['setUser']),
         async handleStatusUpdate() {
-            if (!this.status) {
-                return
-            }
             let updatedUser = {
                 ...this.user,
                 status: this.status

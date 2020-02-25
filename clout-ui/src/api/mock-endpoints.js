@@ -12,7 +12,6 @@ function wait(ms) {
 export default {
     async login() {
         await wait(100)
-        console.log('in')
         return JSON.parse(JSON.stringify(mockUser))
     }
 }

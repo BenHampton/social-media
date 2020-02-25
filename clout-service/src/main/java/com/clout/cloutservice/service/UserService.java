@@ -1,15 +1,13 @@
 package com.clout.cloutservice.service;
 
-import com.clout.cloutservice.model.Login;
 import com.clout.cloutservice.model.SignUp;
 import com.clout.cloutservice.model.entities.UserEntity;
 import com.clout.cloutservice.repository.UserEntityRepository;
+import com.clout.cloutservice.utils.UserUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,8 +17,11 @@ public class UserService {
 
     private UserEntityRepository userEntityRepository;
 
-    public UserService(UserEntityRepository userEntityRepository) {
+    private UserUtils userUtils;
+
+    public UserService(UserEntityRepository userEntityRepository, UserUtils userUtils) {
         this.userEntityRepository = userEntityRepository;
+        this.userUtils = userUtils;
     }
 
     public UserEntity createUser(SignUp signUp) {
@@ -51,6 +52,10 @@ public class UserService {
     public List<UserEntity> findUsernameBySearchTerm(String searchTerm) {
         Optional<List<UserEntity>> userList = userEntityRepository.searchUsernames(searchTerm);
         return userList.orElseThrow(() -> new RuntimeException("No Users Found"));
+    }
+
+    public UserEntity findUser(Long id) {
+        return userUtils.clearPassword(findUserById(id));
     }
 
     private UserEntity findUserById(Long id) {

@@ -9,7 +9,10 @@
 
             <div v-for="(person, key) in suggestions" :key="key">
                 <v-expand-transition>
-                    <v-card class="card" @click="routeToFriendPage(person.id)">
+                    <v-card
+                        class="card"
+                        @click="handleSelectedOption(person.id)"
+                    >
                         <v-card-text>
                             <div>{{ person.logo }} {{ person.username }}</div>
                         </v-card-text>
@@ -23,6 +26,7 @@
 <script>
 import endpoints from '../api/endpoints'
 import debounce from 'debounce'
+import { mapActions, mapState } from 'vuex'
 export default {
     name: 'BaseAutoFriendSearch',
     props: {
@@ -32,6 +36,7 @@ export default {
         }
     },
     computed: {
+        ...mapState('friend', ['friend']),
         items() {
             return this.entries.map(entry => {
                 const username = entry.username
@@ -53,6 +58,7 @@ export default {
         }
     },
     methods: {
+        ...mapActions('friend', ['findFriend']),
         async querySearchAsync(queryString, autocomplete) {
             if (!queryString || queryString.length < this.minSearchLength) {
                 autocomplete([])
@@ -85,8 +91,18 @@ export default {
                 this.updatedSuggestions.bind(this)
             )
         },
-        routeToFriendPage(id) {
-            console.log('Coming Soon - routing to friend page, id: ', id)
+        async handleSelectedOption(ID) {
+            await this.findFriend(ID)
+            this.routeToFriend()
+        },
+        routeToFriend() {
+            if (!this.friend) {
+                return
+            }
+            this.$router.push({
+                name: 'UserProfile',
+                params: { userID: this.friend.ID }
+            })
         }
     },
     mounted() {
