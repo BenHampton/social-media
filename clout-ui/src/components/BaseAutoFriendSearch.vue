@@ -100,8 +100,8 @@ export default {
                 return
             }
             this.$router.push({
-                name: 'UserProfile',
-                params: { userID: this.friend.ID }
+                name: 'Friend',
+                params: { userID: this.friend.id }
             })
         }
     },

@@ -67,7 +67,7 @@ export default {
         routeToUserProfile() {
             this.$router.push({
                 name: 'UserProfile',
-                params: { userID: this.userID }
+                params: { userID: this.user.id }
             })
         }
     }

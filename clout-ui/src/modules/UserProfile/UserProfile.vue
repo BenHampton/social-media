@@ -3,6 +3,7 @@
         <div class="row-one-container">
             <div class="status">
                 <BaseInputStatus
+                    v-if="showUpdateStatus"
                     :user="user"
                     :image="user.logo"
                     :showLogo="false"
@@ -40,7 +41,10 @@ export default {
     name: 'UserProfile',
     components: { BaseInputStatus, BaseToast },
     computed: {
-        ...mapState(['user'])
+        ...mapState(['user']),
+        showUpdateStatus() {
+            return !this.$route.name.match(/Friend/)
+        }
     },
     methods: {
         routeToFriendsList() {

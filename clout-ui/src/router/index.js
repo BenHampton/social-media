@@ -19,6 +19,11 @@ export default new Router({
             name: 'UserProfile',
             component: UserProfile
         },
+        {
+            path: '/user/:userID',
+            name: 'Friend',
+            component: UserProfile
+        },
         { path: '*', redirect: '/' }
     ]
 })
