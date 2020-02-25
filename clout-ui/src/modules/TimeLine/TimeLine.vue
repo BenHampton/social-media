@@ -6,7 +6,7 @@
 
                 <div class="clout-container">
                     <BaseInputStatus
-                        :userID="user.id"
+                        :user="user"
                         :image="user.logo"
                         :showLogo="true"
                     />

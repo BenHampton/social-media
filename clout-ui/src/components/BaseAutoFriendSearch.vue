@@ -55,7 +55,6 @@ export default {
     methods: {
         async querySearchAsync(queryString, autocomplete) {
             if (!queryString || queryString.length < this.minSearchLength) {
-                console.log('in 2')
                 autocomplete([])
                 return
             }

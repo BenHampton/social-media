@@ -3,7 +3,7 @@
         <div class="row-one-container">
             <div class="status">
                 <BaseInputStatus
-                    :userID="user.id"
+                    :user="user"
                     :image="user.logo"
                     :showLogo="false"
                 />

@@ -6,28 +6,33 @@
             @click="routeToUserProfile"
             >{{ image }}</span
         >
-        <v-text-field placeholder="What's Happening?"></v-text-field>
+        <v-text-field
+            placeholder="What's Happening?"
+            v-model="status"
+        ></v-text-field>
         <BaseButton
             value="Update Status"
-            :onClick="postUpdatedStatus"
+            :onClick="handleStatusUpdate"
             backgroundColor="#2e2d2d"
             class="status-button"
         >
         </BaseButton>
+        <!-- <div>{{ user.status }}</div> -->
     </div>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import endpoint from '../api/endpoints'
 import BaseButton from './BaseButton'
+import { mapMutations } from 'vuex'
 export default {
     name: 'BaseInputStatus',
     components: {
         BaseButton
     },
     props: {
-        userID: {
-            type: Number,
+        user: {
+            type: Object,
             required: true
         },
         showLogo: {
@@ -45,15 +50,21 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['updateStatus']),
-        async postUpdatedStatus() {
-            if (this.status.length !== 0) {
-                await this.updateStatus({
-                    user: this.user,
-                    status: this.status
-                })
-                this.status = ''
+        ...mapMutations(['setUser']),
+        async handleStatusUpdate() {
+            if (!this.status) {
+                return
             }
+            let updatedUser = {
+                ...this.user,
+                status: this.status
+            }
+            let response = await endpoint.updateStatus({
+                ...this.user,
+                status: this.status
+            })
+            this.setUser(response)
+            this.status = ''
         },
         routeToUserProfile() {
             this.$router.push({

@@ -2,5 +2,6 @@ import login from './endpoints/login'
 import user from './endpoints/user'
 export default {
     login: login.login,
-    findUsers: user.findUsers
+    findUsers: user.findUsers,
+    updateStatus: user.updateStatus
 }
