@@ -77,7 +77,7 @@ export default {
             badPassword: false,
             badUsername: false,
             email: '',
-            username: 'testy',
+            username: 'testUser1',
             password: 'test',
             rules: {
                 usernameRules: [v => !!v || 'Username is required'],

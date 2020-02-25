@@ -31,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/user-responses")
-    public ResponseEntity<List<UserEntity>> findUsers(@RequestParam String searchTerm) {
+    public ResponseEntity<List<UserEntity>> findUsers(@RequestParam("searchTerm") String searchTerm) {
         return new ResponseEntity<>(userService.findUsernameBySearchTerm(searchTerm), HttpStatus.OK);
     }
 }

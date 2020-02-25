@@ -2,10 +2,10 @@ import api from '../api'
 import { users, host } from './URLS.js'
 
 export default {
-    async findUser(searchTerm) {
+    async findUsers(searchTerm) {
         const config = {
             method: 'get',
-            url: `${host}${users}/user-responses?=${searchTerm}`
+            url: `${host}${users}/user-responses?searchTerm=${searchTerm}`
         }
         return api(config).catch(error => {
             throw error
