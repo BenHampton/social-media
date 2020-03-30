@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface RelationshipRepository extends JpaRepository<RelationshipEntity, Long> {
 
-    Optional<RelationshipEntity> findByActionId(Long actionId);
+    //Optional<RelationshipEntity> findByActionId(Long actionId);
 
-    Optional<RelationshipEntity> findByUserOneIdOrUserTwoId(Long userOneId, Long userTwoId);
+    Optional<RelationshipEntity> findByUserOneIdAndUserTwoId(Long userOneId, Long userTwoId);
 }

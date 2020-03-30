@@ -1,6 +1,5 @@
 package com.clout.cloutservice.service;
 
-import com.clout.cloutservice.model.Relationship;
 import com.clout.cloutservice.model.entities.RelationshipEntity;
 import com.clout.cloutservice.repository.RelationshipRepository;
 import com.clout.cloutservice.utils.RelationshipUtils;
@@ -10,6 +9,8 @@ import java.util.Optional;
 
 @Component
 public class RelationshipService {
+
+    private final Long DECLINED = 2L;
 
     private RelationshipRepository relationshipRepository;
 
@@ -33,11 +34,30 @@ public class RelationshipService {
         return null;
     }
 
-    public RelationshipEntity findRelationship(Long userId) {
+//    public RelationshipEntity findRelationship(Long userId) {
+//
+//        Optional<RelationshipEntity> relationship = relationshipRepository.findByActionId(userId);
+//
+//        return relationship.orElseThrow(() -> new RuntimeException("No Relationship found with userId: " + userId));
+//    }
 
-        Optional<RelationshipEntity> relationship = relationshipRepository.findByActionId(userId);
+    public RelationshipEntity findRelationship(Long userId, Long friendId) {
 
-        return relationship.orElseThrow(() -> new RuntimeException("No Relationship found with userId: " + userId));
+        Long userOne;
+        Long userTwo;
+
+        if (userId < friendId) {
+            userOne = userId;
+            userTwo = friendId;
+        } else {
+            userOne = friendId;
+            userTwo = userId;
+        }
+
+        Optional<RelationshipEntity> userRelationship = relationshipRepository.findByUserOneIdAndUserTwoId(userOne, userTwo);
+
+        return userRelationship.orElseGet( () -> RelationshipEntity.builder().statusId(DECLINED).build());
+
     }
 
     public RelationshipEntity updateRelationship(RelationshipEntity relationship) {
@@ -51,6 +71,5 @@ public class RelationshipService {
         }
         return null;
     }
-
 
 }
