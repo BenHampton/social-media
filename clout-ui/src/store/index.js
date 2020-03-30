@@ -8,6 +8,8 @@ import actions from './actions'
 import mutations from './mutations'
 import getters from './getters'
 import friend from './friend'
+import relationship from './relationship'
+import referenceData from './referenceData'
 
 export const store = new Vuex.Store({
     state,
@@ -15,6 +17,8 @@ export const store = new Vuex.Store({
     mutations,
     getters,
     modules: {
-        friend
+        friend,
+        relationship,
+        referenceData
     }
 })

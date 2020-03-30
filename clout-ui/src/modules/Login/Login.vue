@@ -46,10 +46,9 @@
                                         /></div
                                 ></span>
                             </v-text-field>
-                            <BaseButton
-                                value="Login"
-                                :onClick="handleLogin"
-                            ></BaseButton>
+                            <BaseButton :onClick="handleLogin"
+                                >Login</BaseButton
+                            >
                         </v-form>
                     </v-card>
                 </v-flex>

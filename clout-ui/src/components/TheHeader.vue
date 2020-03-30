@@ -8,11 +8,9 @@
 
             <v-spacer></v-spacer>
 
-            <BaseButton
-                :value="buttonName"
-                :onClick="routeHeaderButton"
-                class="button-container"
-            ></BaseButton>
+            <BaseButton :onClick="routeHeaderButton" class="button-container">{{
+                buttonName
+            }}</BaseButton>
         </v-app-bar>
     </div>
 </template>

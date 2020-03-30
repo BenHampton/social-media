@@ -9,7 +9,7 @@
                 </v-text-field>
             </v-flex>
             <v-flex xs2>
-                <BaseButton value="Post" :onClick="postStatus"> </BaseButton>
+                <BaseButton :onClick="postStatus">Post</BaseButton>
             </v-flex>
         </v-layout>
     </v-container>

@@ -9,18 +9,17 @@
         </div>
         <div class="sign-up-container">
             <BaseButton
-                value="Sign Up"
                 :onClick="handleSignUp"
                 backgroundColor="#2e2d2d"
                 class="button-container"
-            />
+            >
+                Sign Up
+            </BaseButton>
         </div>
         <div class="login-container">
-            <BaseButton
-                value="Login"
-                :onClick="handleLogin"
-                class="button-container"
-            />
+            <BaseButton :onClick="handleLogin" class="button-container">
+                Login
+            </BaseButton>
         </div>
     </div>
 </template>

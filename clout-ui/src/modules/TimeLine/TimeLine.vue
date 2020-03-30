@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState, mapMutations, mapActions } from 'vuex'
 import CloutCard from './components/CloutCard'
 import BaseInputStatus from '../../components/BaseInputStatus'
 import FastTimeLine from './components/FastTimeLine'
@@ -32,11 +32,15 @@ export default {
         BaseInputStatus,
         FastTimeLine
     },
-    methods: {
-        ...mapMutations(['setUser'])
-    },
     computed: {
         ...mapState(['user'])
+    },
+    methods: {
+        ...mapActions('referenceData', ['getRelationshipStatusCodes']),
+        ...mapMutations(['setUser'])
+    },
+    async created() {
+        await this.getRelationshipStatusCodes()
     }
 }
 </script>

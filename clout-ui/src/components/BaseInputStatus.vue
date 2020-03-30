@@ -12,11 +12,11 @@
             clearable
         ></v-text-field>
         <BaseButton
-            value="Update Status"
             :onClick="handleStatusUpdate"
             backgroundColor="#2e2d2d"
             class="status-button"
         >
+            Update Status
         </BaseButton>
         <!-- <div>{{ user.status }}</div> -->
     </div>

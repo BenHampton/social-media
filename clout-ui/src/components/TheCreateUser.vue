@@ -40,10 +40,7 @@
                         </v-text-field>
                     </div>
                     <div>
-                        <BaseButton
-                            value="Login"
-                            :onClick="createUser"
-                        ></BaseButton>
+                        <BaseButton :onClick="createUser">Login</BaseButton>
                     </div>
                 </div>
             </v-form>

@@ -7,5 +7,12 @@ export default {
     },
     setFriendError(state, error) {
         state.friend_error = error
+    },
+
+    setFriendSearchLoading(state, isLoading) {
+        state.isFriendSearch_loading = isLoading
+    },
+    setFriendSearchError(state, error) {
+        state.friendSearch_error = error
     }
 }

@@ -2,7 +2,7 @@ import api from '../api'
 import { referenceData, host } from './URLS.js'
 
 export default {
-    async getStatusCodes() {
+    async getRelationshipStatusCodes() {
         const config = {
             method: 'get',
             url: `${host}${referenceData}/status-codes`

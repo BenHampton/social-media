@@ -1,20 +1,36 @@
 <template>
     <div class="status-container">
-        <div>
+        <div class="search">
             <v-text-field
                 placeholder="Search for friend"
                 v-model="value"
                 @input="debounceInputChange"
             />
 
-            <div v-for="(person, key) in suggestions" :key="key">
+            <div v-for="(suggestion, key) in suggestions" :key="key">
+                <!-- !suggestion.getRelationship.code === 3 will be updated and should be handled at the backend -->
                 <v-expand-transition>
-                    <v-card
-                        class="card"
-                        @click="handleSelectedOption(person.id)"
-                    >
-                        <v-card-text>
-                            <div>{{ person.logo }} {{ person.username }}</div>
+                    <v-card class="card">
+                        <v-card-text class="card-text-container">
+                            <div
+                                class="text"
+                                @click="
+                                    handleSelectedOption(suggestion.friend.id)
+                                "
+                            >
+                                <div class="image">
+                                    {{ suggestion.friend.logo }}
+                                </div>
+                                <div>
+                                    {{ suggestion.friend.username }}
+                                </div>
+                            </div>
+                            <div class="status-container">
+                                <TheUpdateFriendStatus
+                                    :relationship="suggestion.relationship"
+                                    :ID="suggestion.friend.id"
+                                />
+                            </div>
                         </v-card-text>
                     </v-card>
                 </v-expand-transition>
@@ -26,17 +42,23 @@
 <script>
 import endpoints from '../api/endpoints'
 import debounce from 'debounce'
+import TheUpdateFriendStatus from './TheUpdateFriendStatus'
 import { mapActions, mapState } from 'vuex'
 export default {
     name: 'BaseAutoFriendSearch',
+    components: { TheUpdateFriendStatus },
     props: {
         debounce: {
             type: Number,
-            default: 300
+            default: 500
+        },
+        user: {
+            type: Object,
+            required: true
         }
     },
     computed: {
-        ...mapState('friend', ['friend']),
+        ...mapState('friend', ['friend', 'friendSearch']),
         items() {
             return this.entries.map(entry => {
                 const username = entry.username
@@ -51,14 +73,17 @@ export default {
             suggestions: [],
             value: '',
 
+            searchResults: [],
+
             debounceInputChange: null,
 
-            findUser_isLoading: false,
-            findUser_error: null
+            searchUser_isLoading: false,
+            searchUser_error: null
         }
     },
     methods: {
-        ...mapActions('friend', ['findFriend']),
+        ...mapActions('friend', ['searchForUsers', 'findFriend']),
+        ...mapActions('relationship', ['findRelationship']),
         async querySearchAsync(queryString, autocomplete) {
             if (!queryString || queryString.length < this.minSearchLength) {
                 autocomplete([])
@@ -66,19 +91,55 @@ export default {
             }
 
             try {
-                this.findUser_isLoading = true
-                this.findUser_error = null
+                this.searchUser_isLoading = true
+                this.searchUser_error = null
 
-                let response = await endpoints.findUsers(queryString)
-                autocomplete(response)
+                let results = await endpoints.searchForUsers(queryString)
+
+                let promises = []
+
+                results.forEach(result =>
+                    promises.push(this.getRelationship(result))
+                )
+
+                await Promise.all(promises).catch(error => {
+                    throw error
+                })
+
+                this.searchResults = this.searchResults.filter(() => true)
+
+                autocomplete(this.searchResults)
             } catch (error) {
                 autocomplete([])
-                this.findUser_error = error
+                this.searchUser_error = error
             } finally {
-                this.findUser_isLoading = false
+                this.searchUser_isLoading = false
             }
         },
-        updatedSuggestions(results) {
+        async getRelationship(friend) {
+            const friendID = friend.id
+            try {
+                this.$set(this.searchResults, friendID, {
+                    loading: true,
+                    error: null,
+                    friend: null,
+                    relationship: null
+                })
+
+                let response = await this.findRelationship({
+                    userID: this.user.id,
+                    friendID: friendID
+                })
+
+                this.searchResults[friendID].relationship = response
+                this.searchResults[friendID].friend = friend
+            } catch (error) {
+                this.searchResults[friendID].error = error
+            } finally {
+                this.searchResults[friendID].loading = false
+            }
+        },
+        updateSuggestions(results) {
             this.suggestions = results
         },
         inputChange() {
@@ -86,10 +147,8 @@ export default {
                 return
             }
             this.suggestions = []
-            this.querySearchAsync(
-                this.value,
-                this.updatedSuggestions.bind(this)
-            )
+            this.searchResults = []
+            this.querySearchAsync(this.value, this.updateSuggestions.bind(this))
         },
         async handleSelectedOption(ID) {
             await this.findFriend(ID)
@@ -119,6 +178,10 @@ export default {
     padding: 5%;
 }
 
+.search {
+    width: 100%;
+}
+
 .image-container {
     background: tan;
 }
@@ -134,6 +197,19 @@ export default {
 
     &:hover {
         background: rgba(46, 45, 45, 0.1);
+    }
+
+    .card-text-container {
+        display: flex;
+
+        .text {
+            width: 100%;
+            display: flex;
+        }
+
+        .image {
+            margin-right: 30%;
+        }
     }
 }
 </style>
