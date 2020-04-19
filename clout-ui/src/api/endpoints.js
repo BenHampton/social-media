@@ -2,6 +2,7 @@ import login from './endpoints/login'
 import user from './endpoints/user'
 import relationship from './endpoints/relationship'
 import referenceData from './endpoints/referenceData'
+import webScrapper from './endpoints/webScrapper'
 
 export default {
     login: login.login,
@@ -15,5 +16,7 @@ export default {
     updateRelationship: relationship.updateRelationship,
     createRelationship: relationship.createRelationship,
 
-    getRelationshipStatusCodes: referenceData.getRelationshipStatusCodes
+    getRelationshipStatusCodes: referenceData.getRelationshipStatusCodes,
+
+    retrieveUrlData: webScrapper.retrieveUrlData
 }

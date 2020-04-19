@@ -6,4 +6,17 @@ const referenceData = '/reference-data'
 const relationships = '/relationships'
 const users = '/users'
 
-export { comments, host, login, posts, referenceData, relationships, users }
+const webScrappingHost = 'http://localhost:8082'
+const openGraph = '/open-graph-matadata-properties'
+
+export {
+    comments,
+    host,
+    webScrappingHost,
+    login,
+    posts,
+    openGraph,
+    referenceData,
+    relationships,
+    users
+}

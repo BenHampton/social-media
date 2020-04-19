@@ -1,6 +1,6 @@
 <template>
     <div class="user-profile-container">
-        <div class="row-one-container">
+        <div class="user-info">
             <div class="status">
                 <BaseInputStatus
                     v-if="showUpdateStatus"
@@ -27,7 +27,10 @@
                 </div>
             </div>
         </div>
-        <div class="row-two-container">
+        <div class="user-posts">
+            <div>
+                <ThePostModal :user="user" />
+            </div>
             personal feed
         </div>
     </div>
@@ -36,10 +39,11 @@
 <script>
 import { mapState } from 'vuex'
 import BaseInputStatus from '../../components/BaseInputStatus'
+import ThePostModal from '../../components/ThePostModal'
 import BaseToast from '../../components/BaseToast'
 export default {
     name: 'UserProfile',
-    components: { BaseInputStatus, BaseToast },
+    components: { BaseInputStatus, BaseToast, ThePostModal },
     computed: {
         ...mapState(['user']),
         showUpdateStatus() {
@@ -58,7 +62,7 @@ export default {
 .user-profile-container {
     margin-top: 20px;
 }
-.row-one-container {
+.user-info {
     position: relative;
     width: 100%;
 
@@ -114,8 +118,8 @@ export default {
     }
 }
 
-.row-two-container {
-    background: tan;
+.user-posts {
+    border-top: 1px solid black;
     position: relative;
     margin-top: 1%;
     width: 100%;

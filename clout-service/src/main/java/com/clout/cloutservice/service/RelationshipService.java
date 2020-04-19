@@ -56,7 +56,9 @@ public class RelationshipService {
 
         Optional<RelationshipEntity> userRelationship = relationshipRepository.findByUserOneIdAndUserTwoId(userOne, userTwo);
 
-        return userRelationship.orElseGet( () -> RelationshipEntity.builder().statusId(DECLINED).build());
+        //TODO Logic may need to be updated if logic does not filter out BLOCKED where status equals 3
+        return userRelationship.filter( relationship -> relationship.getStatusId() != 3)
+                .orElseGet( () -> RelationshipEntity.builder().statusId(DECLINED).build());
 
     }
 

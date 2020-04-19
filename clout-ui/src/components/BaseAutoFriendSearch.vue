@@ -58,14 +58,15 @@ export default {
         }
     },
     computed: {
-        ...mapState('friend', ['friend', 'friendSearch']),
-        items() {
-            return this.entries.map(entry => {
-                const username = entry.username
+        ...mapState('friend', ['friend', 'friendSearch'])
+        //WTF WAS I DOING LOL
+        // items() {
+        //     return this.entries.map(entry => {
+        //         const username = entry.username
 
-                return Object.assign({}, entry, { username })
-            })
-        }
+        //         return Object.assign({}, entry, { username })
+        //     })
+        // }
     },
     data() {
         return {

@@ -11,5 +11,18 @@ export default {
         } finally {
             commit('setLoginLoading', false)
         }
+    },
+
+    async retrieveUrlData({ commit }, url) {
+        try {
+            commit('setUrlDataLoading', true)
+            commit('setUrlDataError', null)
+
+            return await endpoints.retrieveUrlData(url)
+        } catch (error) {
+            commit('setUrlDataError', error)
+        } finally {
+            commit('setUrlDataLoading', false)
+        }
     }
 }

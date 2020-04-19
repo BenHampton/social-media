@@ -18,5 +18,11 @@ export default {
     },
     setStatusdError(state, error) {
         state.friend_error = error
+    },
+    setUrlDataLoading(state, isLoading) {
+        state.isUrlData_loading = isLoading
+    },
+    setUrlDataError(state, error) {
+        state.isUrlData_error = error
     }
 }
